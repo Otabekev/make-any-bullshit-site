@@ -251,7 +251,7 @@ body.js .sheet-b.in .pen{opacity:1;transition:opacity .5s ease 1.5s}
     <p class="whisper rise">You thought of the perfect comeback three hours later.<br>In the shower.</p>
     <p class="shout rise">You're not slow.<br>You just don't have a system.</p>
     <div class="buy rise">
-      <a class="btn" href="#price">Get instant access <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="btn" href="https://argumentlab.lemonsqueezy.com/checkout/buy/11f32522-1c07-46bb-843b-d7bbe48e232b" data-checkout>Get instant access <span class="arrow" aria-hidden="true">&rarr;</span></a>
       <span class="meta">$27 &middot; instant PDF &middot; 30-day money back</span>
     </div>
     <p class="extra rise"><img src="{{ASSET:web/book-smoke-thumb.webp}}" alt="" width="68" height="98"><span>Comes with <b>The Smoke Method</b> field guide, free.</span></p>
@@ -367,7 +367,7 @@ body.js .sheet-b.in .pen{opacity:1;transition:opacity .5s ease 1.5s}
           <li><b>The Smoke Method, free.</b> <span>The five-step questioning method: pause, clarify, trace, test, lead. You never run out of questions again.</span></li>
           <li><b>30 days, zero risk.</b> <span>If it doesn't change how you argue, you get every dollar back and keep the book anyway.</span></li>
         </ul>
-        <a class="btn" href="#checkout">Get instant access <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn" href="https://argumentlab.lemonsqueezy.com/checkout/buy/11f32522-1c07-46bb-843b-d7bbe48e232b" data-checkout>Get instant access <span class="arrow" aria-hidden="true">&rarr;</span></a>
         <p class="meta">Secure checkout &middot; download link in under a minute</p>
       </article>
     </div>
@@ -386,14 +386,14 @@ body.js .sheet-b.in .pen{opacity:1;transition:opacity .5s ease 1.5s}
 </section>
 
 <!-- ============ CLOSE ============ -->
-<section class="close" id="checkout">
+<section class="close" id="close">
   <img class="smoke-band" src="{{ASSET:web/smoke-field.webp}}" alt="" width="1400" height="238">
   <div class="wrap close-grid">
     <h2 class="rise">The next one is already coming</h2>
     <div class="close-copy rise">
       <p>Someone is going to say something to you this week, and you'll be replaying it at midnight. You walk into that with this, or without it.</p>
       <div class="buy">
-        <a class="btn" href="#price">Get instant access <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <a class="btn" href="https://argumentlab.lemonsqueezy.com/checkout/buy/11f32522-1c07-46bb-843b-d7bbe48e232b" data-checkout>Get instant access <span class="arrow" aria-hidden="true">&rarr;</span></a>
         <span class="meta">$27 &middot; instant PDF</span>
       </div>
     </div>
@@ -406,6 +406,22 @@ body.js .sheet-b.in .pen{opacity:1;transition:opacity .5s ease 1.5s}
   <span>&copy; 2026</span>
 </footer>
 
+<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+<script>
+/* checkout opens over the page when Lemon Squeezy's script is available; otherwise the link just goes to checkout */
+window.addEventListener('load', function(){
+  if (typeof window.createLemonSqueezy === 'function') { try { window.createLemonSqueezy(); } catch (e) {} }
+});
+document.addEventListener('click', function(e){
+  var a = e.target.closest && e.target.closest('a[data-checkout]');
+  if (!a) return;
+  var LS = window.LemonSqueezy;
+  if (LS && LS.Url && typeof LS.Url.Open === 'function') {
+    e.preventDefault();
+    LS.Url.Open(a.href + (a.href.indexOf('?') < 0 ? '?embed=1' : '&embed=1'));
+  }
+});
+</script>
 <script>
 document.body.classList.add('js');
 (function(){
