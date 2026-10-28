@@ -1,0 +1,465 @@
+<title>Make Any Bullshit Sound Brilliant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+@font-face{font-family:'Bebas Neue';src:url({{ASSET:web/bebas.woff2}}) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Newsreader';src:url({{ASSET:web/newsreader.woff2}}) format('woff2');font-weight:300 600;font-style:normal;font-display:swap}
+@font-face{font-family:'Newsreader';src:url({{ASSET:web/newsreader-italic.woff2}}) format('woff2');font-weight:300 500;font-style:italic;font-display:swap}
+
+/* A dark desk with real objects on it: the book, its smoke, two typed transcripts.
+   Colours are taken from the Smoke Method cover itself. Red appears only where something is decided. */
+:root{
+  --bg:#0f1316; --bg-lift:#161c20; --bg-deep:#0a0d0f;
+  --text:#f4f2ee; --muted:#aaacae; --faint:#83878a;
+  --red:#d7261e; --red-hot:#ee3a31;
+  --paper:#ece7dd; --paper-2:#e4ded2; --ink:#1b1916; --ink-soft:#5e584f; --pen:#c4211a;
+  --disp:'Bebas Neue','Oswald','Arial Narrow',Impact,sans-serif;
+  --serif:'Newsreader','Iowan Old Style','Georgia',serif;
+  --h2:clamp(2.6rem,6.2vw,5.2rem);
+  --h3:clamp(1.65rem,2.6vw,2.15rem);
+  --lede:clamp(1.2rem,1.8vw,1.45rem);
+  --body:clamp(1.0625rem,1.2vw,1.1875rem);
+  --small:0.9375rem;
+  --gut:max(20px,env(safe-area-inset-left,0px));
+  --gut-r:max(20px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+@media (min-width:700px){:root{--gut:max(36px,env(safe-area-inset-left,0px));--gut-r:max(36px,env(safe-area-inset-right,0px))}}
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--serif);font-size:var(--body);font-weight:400;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;letter-spacing:.005em;line-height:.92;text-wrap:balance}
+h2{font-size:var(--h2)}
+h3{font-size:var(--h3);line-height:1}
+p{margin:0}
+.wrap{max-width:1240px;margin-inline:auto;padding-left:var(--gut);padding-right:var(--gut-r)}
+.red{color:var(--red)}
+
+/* ---------- buttons: one shape, square ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:58px;padding:0 2.1rem;background:var(--red);color:#fff;border:0;border-radius:0;cursor:pointer;text-decoration:none;font-family:var(--disp);font-size:1.5rem;letter-spacing:.04em;line-height:1;transition:background .18s ease,transform .18s ease}
+.btn:hover{background:var(--red-hot)}
+.btn:active{transform:translateY(2px)}
+.btn:focus-visible{outline:3px solid var(--text);outline-offset:3px}
+.btn .arrow{display:inline-block;transition:transform .18s ease}
+.btn:hover .arrow{transform:translateX(4px)}
+.btn-ghost{background:transparent;color:var(--text);box-shadow:inset 0 0 0 2px #3a4247}
+.btn-ghost:hover{background:#1d2428}
+.btn-sm{min-height:44px;padding:0 1.2rem;font-size:1.2rem}
+.meta{font-size:var(--small);color:var(--muted)}
+
+/* ---------- nav ---------- */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:max(18px,env(safe-area-inset-top,0px));padding-bottom:10px}
+.brand{font-family:var(--disp);font-size:1.35rem;letter-spacing:.06em;color:var(--text);text-decoration:none;line-height:1}
+.brand b{font-weight:400;color:var(--red)}
+.nav-right{display:flex;align-items:center;gap:clamp(1rem,2.4vw,2rem)}
+.nav-links{display:none;gap:1.75rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:1rem}
+.nav-links a:hover{color:var(--text)}
+.nav a:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+@media (max-width:520px){.nav-right .btn-sm{display:none}.brand{font-size:1.2rem}}
+.whisper,.shout,.extra span{text-wrap:pretty}
+@media (min-width:860px){.nav-links{display:flex}}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center;padding-top:clamp(1.25rem,3vw,2.25rem);padding-bottom:clamp(4rem,8vw,6.5rem)}
+@media (min-width:900px){.hero{grid-template-columns:1.06fr .94fr;gap:2rem}}
+.title{font-size:min(25vw,9rem);line-height:.84;letter-spacing:.004em;text-transform:uppercase}
+.title span{display:block}
+@media (min-width:900px){.title{font-size:clamp(4.5rem,8.4vw,7.6rem)}}
+.whisper{margin-top:clamp(1.3rem,2.2vw,1.75rem);font-style:italic;font-weight:300;font-size:var(--lede);line-height:1.4;color:var(--muted);max-width:40ch}
+.shout{margin-top:.45rem;font-weight:500;font-size:clamp(1.4rem,2.2vw,1.8rem);line-height:1.25;max-width:30ch}
+.buy{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.4rem;margin-top:clamp(1.5rem,2.6vw,2rem)}
+.extra{display:flex;align-items:center;gap:.85rem;margin-top:1.4rem;color:var(--muted);font-size:var(--small)}
+.extra img{width:34px;height:auto;flex:none}
+.extra b{color:var(--text);font-weight:500}
+
+.stage{position:relative;display:grid;place-items:center;isolation:isolate;min-height:clamp(420px,62vw,640px)}
+.lamp{position:absolute;inset:-12% -30% -10% -30%;background:radial-gradient(closest-side,rgba(255,232,206,.15),rgba(255,232,206,.06) 46%,rgba(255,232,206,0) 76%);z-index:-2;pointer-events:none}
+.smoke{position:absolute;pointer-events:none;z-index:-1;height:118%;width:auto;max-width:none;top:-14%;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 80%,transparent);mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 80%,transparent)}
+.smoke.s1{right:4%;opacity:.7;animation:drift-a 24s ease-in-out infinite alternate}
+.smoke.s2{left:10%;opacity:.38;transform:scaleX(-1);animation:drift-b 30s ease-in-out infinite alternate}
+@keyframes drift-a{from{transform:translate3d(0,2%,0)}to{transform:translate3d(-3%,-5%,0)}}
+@keyframes drift-b{from{transform:scaleX(-1) translate3d(0,3%,0)}to{transform:scaleX(-1) translate3d(4%,-4%,0)}}
+.book-wrap{perspective:1400px;width:min(78%,410px)}
+.book{width:100%;filter:drop-shadow(0 34px 44px rgba(0,0,0,.6));transform:rotateY(0) rotateX(0);transition:transform .5s cubic-bezier(.22,.61,.36,1);will-change:transform}
+
+/* ---------- 2 · the sentences ---------- */
+.heard{position:relative;background:var(--bg-deep);padding-block:clamp(5rem,10vw,8.5rem);overflow:hidden}
+.heard h2{max-width:22ch}
+.litany{list-style:none;margin:clamp(2rem,4vw,3rem) 0 0;padding:0;display:flex;flex-direction:column;gap:.2rem}
+.litany li{font-family:var(--disp);text-transform:uppercase;font-size:clamp(2rem,6.4vw,4.4rem);line-height:1;letter-spacing:.005em;color:#5f676c;transition:color .5s ease}
+.litany li.lit{color:var(--text)}
+.heard-turn{margin-top:clamp(2.5rem,5vw,3.5rem);font-size:var(--lede);line-height:1.45;max-width:36ch;color:var(--muted)}
+.heard-turn em{color:var(--text);font-style:italic}
+.heard .smoke-band{position:absolute;right:-6%;bottom:6%;width:62%;max-width:none;opacity:.5;pointer-events:none}
+
+/* ---------- 3 · the desk ---------- */
+.desk{position:relative;padding-block:clamp(5rem,10vw,8.5rem);background:var(--bg);isolation:isolate}
+.desk::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 45% at 50% 38%,rgba(255,232,206,.07),rgba(255,232,206,0) 70%);z-index:-1;pointer-events:none}
+.desk h2{max-width:13ch}
+.desk-lede{margin-top:1.1rem;font-size:var(--lede);color:var(--muted);max-width:44ch;line-height:1.45}
+.sheets{display:grid;grid-template-columns:1fr;gap:2.25rem;margin-top:clamp(2.5rem,5vw,4rem)}
+@media (min-width:860px){.sheets{grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,2.75rem)}}
+.sheet{position:relative;background-color:var(--paper);color:var(--ink);padding:clamp(1.5rem,3vw,2.4rem) clamp(1.35rem,3vw,2.4rem) clamp(1.75rem,3.4vw,2.6rem);min-width:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32  0 0 0 0 .28  0 0 0 0 .2  0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 28px 50px -18px rgba(0,0,0,.75),0 10px 18px -10px rgba(0,0,0,.6)}
+.sheet,.card{transform:rotate(var(--rot,0deg))}
+.sheet-a{--rot:-1.3deg}
+.sheet-b{--rot:.9deg}
+.card{--rot:-.6deg}
+@media (max-width:859px){.sheet-a{--rot:-.7deg}.sheet-b{--rot:.5deg}.card{--rot:-.3deg}}
+.sheet-head{display:flex;justify-content:space-between;gap:1rem;font-style:italic;font-size:var(--small);color:var(--ink-soft);padding-bottom:.85rem;margin-bottom:1.3rem;border-bottom:1.5px solid #cfc7b8}
+.sheet-head b{font-style:normal;font-weight:600;color:var(--ink)}
+.exchange{display:grid;grid-template-columns:3.2rem 1fr;gap:.25rem .5rem;margin-bottom:1.15rem}
+.exchange:last-of-type{margin-bottom:0}
+.who{font-weight:600;font-size:var(--small);color:var(--ink-soft);padding-top:.18rem}
+.said{font-size:clamp(1.0625rem,1.35vw,1.25rem);line-height:1.5;min-width:0}
+.said.weak{color:var(--ink-soft);font-style:italic;font-weight:300}
+.pen{margin-top:1.4rem;padding-left:3.7rem;font-style:italic;font-size:clamp(1.0625rem,1.3vw,1.2rem);color:var(--pen);line-height:1.35}
+.circled{position:relative;white-space:nowrap;font-weight:500}
+.circled svg{position:absolute;left:-6.5%;top:-46%;width:113%;height:192%;overflow:visible;pointer-events:none}
+.circled path{fill:none;stroke:var(--pen);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:0}
+.strike{position:relative}
+.verdict{margin-top:clamp(2.5rem,5vw,3.5rem);font-size:var(--lede);line-height:1.45;max-width:42ch}
+.verdict b{font-weight:600}
+
+/* the live thing: an index card you answer on */
+.turn{display:grid;grid-template-columns:1fr;gap:clamp(1.5rem,3vw,2.5rem);margin-top:clamp(4rem,8vw,6.5rem);align-items:start}
+@media (min-width:900px){.turn{grid-template-columns:.8fr 1.2fr}}
+.turn-intro p{margin-top:.9rem;color:var(--muted);max-width:30ch;font-size:var(--lede);line-height:1.45}
+.card{position:relative;background-color:var(--paper);color:var(--ink);padding:clamp(1.5rem,3vw,2.25rem);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32  0 0 0 0 .28  0 0 0 0 .2  0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  box-shadow:0 28px 50px -18px rgba(0,0,0,.75),0 10px 18px -10px rgba(0,0,0,.6)}
+.card-top{display:flex;justify-content:space-between;font-style:italic;font-size:var(--small);color:var(--ink-soft);padding-bottom:.8rem;margin-bottom:1.1rem;border-bottom:2px solid #d9a8a2}
+.jab{font-family:var(--disp);font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1;color:var(--ink)}
+.opts{display:flex;flex-direction:column;gap:.6rem;margin-top:1.3rem}
+.opt{display:flex;align-items:baseline;gap:.75rem;text-align:left;width:100%;font-family:var(--serif);font-size:clamp(1.0625rem,1.3vw,1.2rem);line-height:1.4;color:var(--ink);background:var(--paper-2);border:0;border-radius:0;padding:.95rem 1.1rem;cursor:pointer;transition:background .16s ease,box-shadow .16s ease}
+.opt:hover{background:#dbd4c6}
+.opt:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.opt .k{font-family:var(--disp);font-size:1.25rem;color:var(--ink-soft);flex:none;width:1.1rem}
+.opt[aria-pressed=true]{background:#d6cfc0;box-shadow:inset 3px 0 0 var(--ink)}
+.v{margin-top:1.4rem;display:grid;grid-template-columns:auto 1fr;gap:1rem 1.25rem;align-items:center}
+.stamp{display:inline-block;font-family:var(--disp);font-size:clamp(1.35rem,2.2vw,1.7rem);letter-spacing:.05em;line-height:1;padding:.42em .6em .32em;border:3px solid currentColor;transform:rotate(-7deg);color:var(--pen);white-space:nowrap}
+.v.win .stamp{color:var(--ink)}
+.v p{font-size:var(--body);line-height:1.5;color:var(--ink)}
+@media (max-width:520px){.v{grid-template-columns:1fr}.stamp{justify-self:start}}
+body.js .v{display:none}
+body.js .v.on{display:grid;animation:stamp .42s cubic-bezier(.2,.9,.3,1.25) both}
+@keyframes stamp{from{opacity:0;transform:scale(1.18)}to{opacity:1;transform:none}}
+
+/* ---------- 4 · what you walk away with ---------- */
+.inside{padding-block:clamp(5rem,10vw,8rem)}
+.gets{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3rem);margin-top:clamp(2.25rem,4.5vw,3.5rem)}
+@media (min-width:860px){.gets{grid-template-columns:repeat(3,1fr)}}
+.get h3{color:var(--text);max-width:20ch}
+.get p{margin-top:.85rem;color:var(--muted);line-height:1.55}
+.get q{color:var(--text);font-style:italic;quotes:"\201C" "\201D"}
+
+/* ---------- 5 · the offer ---------- */
+.offer{background:var(--bg-deep);padding-block:clamp(5rem,10vw,8.5rem)}
+.anchor{margin-top:1.1rem;font-size:var(--lede);line-height:1.45;color:var(--muted);max-width:44ch}
+.anchor b{color:var(--text);font-weight:500}
+.plans{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:clamp(2.5rem,5vw,3.75rem);align-items:stretch}
+@media (min-width:880px){.plans{grid-template-columns:.86fr 1.14fr;gap:1.5rem}}
+.plan{display:flex;flex-direction:column;padding:clamp(1.6rem,3vw,2.4rem);background:var(--bg);min-width:0}
+.plan-book{background:var(--bg-lift);box-shadow:inset 0 4px 0 var(--red)}
+.plan-flag{align-self:flex-start;font-family:var(--disp);font-size:1.15rem;letter-spacing:.06em;color:#fff;background:var(--red);padding:.32em .6em .22em;margin-bottom:1.2rem}
+.plan-art{margin:.25rem auto 1.25rem;width:min(100%,360px)}
+.plan-name{font-family:var(--disp);font-size:clamp(1.8rem,2.8vw,2.3rem);line-height:1}
+.plan-price{font-family:var(--disp);font-size:clamp(4rem,8vw,6rem);line-height:.86;margin-top:.35rem;font-variant-numeric:tabular-nums}
+.plan-kit .plan-price{color:var(--muted)}
+@media (min-width:880px){.plan-kit{align-self:start}}
+.plan-kit ul{flex:0 1 auto}
+.plan ul{list-style:none;margin:1.4rem 0 1.9rem;padding:0;display:flex;flex-direction:column;gap:.7rem;flex:1}
+.plan li{position:relative;padding-left:1.6rem;line-height:1.45;color:var(--muted)}
+.plan li::before{content:"";position:absolute;left:0;top:.62em;width:.75rem;height:2px;background:#4a5257}
+.plan-book li{color:var(--text)}
+.plan-book li::before{background:var(--red)}
+.plan .meta{margin-top:.9rem}
+.plan .btn{align-self:flex-start}
+.plan-lead{margin-top:1rem;font-size:var(--body);line-height:1.5;color:var(--text);max-width:40ch;font-style:italic}
+.plan-book ul{gap:1.05rem}
+.plan-book li b{display:block;font-weight:600;color:var(--text)}
+.plan-book li span{display:block;margin-top:.2rem;color:var(--muted);line-height:1.5}
+.plan-book li::before{top:.72em}
+.plan-kit li.plus{padding-left:0;color:var(--text);font-style:italic}
+.plan-kit li.plus::before{display:none}
+
+/* ---------- 6 · questions ---------- */
+.faq{padding-block:clamp(5rem,10vw,8rem);display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3rem)}
+@media (min-width:900px){.faq{grid-template-columns:.75fr 1.25fr}}
+.qs{display:flex;flex-direction:column;gap:.5rem}
+.q{background:var(--bg-lift)}
+.q summary{list-style:none;cursor:pointer;position:relative;padding:1.2rem 3.4rem 1.2rem 1.35rem;font-size:clamp(1.125rem,1.5vw,1.3rem);font-weight:500;line-height:1.35}
+.q summary::-webkit-details-marker{display:none}
+.q summary::after{content:"+";position:absolute;right:1.3rem;top:50%;transform:translateY(-50%);font-family:var(--disp);font-size:1.8rem;color:var(--muted);transition:transform .2s ease}
+.q[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.q summary:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.q p{padding:0 1.35rem 1.4rem;color:var(--muted);max-width:58ch;line-height:1.55}
+
+/* ---------- 7 · close ---------- */
+.close{position:relative;overflow:hidden;background:var(--bg-deep);padding-block:clamp(5.5rem,11vw,9rem) clamp(4rem,8vw,6rem)}
+.close-grid{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3rem);align-items:end}
+@media (min-width:900px){.close-grid{grid-template-columns:1.1fr .9fr}}
+.close h2{font-size:clamp(3rem,8.4vw,7rem);max-width:12ch}
+.close-copy p{font-size:var(--lede);line-height:1.45;color:var(--muted);max-width:34ch}
+.close-copy .buy{margin-top:1.75rem}
+.close .smoke-band{position:absolute;left:-8%;top:7%;width:74%;max-width:none;opacity:.42;pointer-events:none;transform:scaleY(-1)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem;padding-block:2rem max(2rem,env(safe-area-inset-bottom,0px));color:var(--faint);font-size:var(--small)}
+.foot a{color:var(--faint)}
+
+/* ---------- motion ---------- */
+body.js .rise{opacity:0;transform:translateY(24px) rotate(var(--rot,0deg))}
+body.js .rise.in{opacity:1;transform:rotate(var(--rot,0deg));transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+body.js .title.rise span{opacity:0;transform:translateY(.28em)}
+body.js .title.rise.in span{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+body.js .title.rise.in span:nth-child(2){transition-delay:.08s}
+body.js .title.rise.in span:nth-child(3){transition-delay:.16s}
+body.js .title.rise.in span:nth-child(4){transition-delay:.24s}
+body.js .title.rise{opacity:1;transform:none}
+body.js .sheet-b .circled path{stroke-dashoffset:1}
+body.js .sheet-b.in .circled path{stroke-dashoffset:0;transition:stroke-dashoffset 1.1s cubic-bezier(.6,.05,.3,1) .55s}
+body.js .sheet-b .pen{opacity:0}
+body.js .sheet-b.in .pen{opacity:1;transition:opacity .5s ease 1.5s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  body.js .rise,body.js .rise.in,body.js .title.rise span{opacity:1;transform:rotate(var(--rot,0deg));transition:none}
+  body.js .sheet-b .circled path{stroke-dashoffset:0;transition:none}
+  body.js .sheet-b .pen{opacity:1;transition:none}
+  .smoke{animation:none}
+  body.js .v.on{animation:none}
+  .book{transition:none}
+}
+</style>
+
+<header class="wrap nav">
+  <a class="brand" href="#top">Make any <b>bullshit</b> sound brilliant</a>
+  <div class="nav-right">
+    <nav class="nav-links" aria-label="Sections"><a href="#proof">See it work</a><a href="#price">Price</a></nav>
+    <a class="btn btn-sm" href="#price">Get the book</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- ============ HERO ============ -->
+<section class="wrap hero">
+  <div class="hero-copy">
+    <h1 class="title rise"><span>Make any</span><span class="red">bullshit</span><span>sound</span><span>brilliant</span></h1>
+    <p class="whisper rise">You thought of the perfect comeback three hours later.<br>In the shower.</p>
+    <p class="shout rise">You're not slow.<br>You just don't have a system.</p>
+    <div class="buy rise">
+      <a class="btn" href="#price">Get instant access <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <span class="meta">$27 &middot; instant PDF &middot; 30-day money back</span>
+    </div>
+    <p class="extra rise"><img src="{{ASSET:web/book-smoke-thumb.webp}}" alt="" width="68" height="98"><span>Comes with <b>The Smoke Method</b> field guide, free.</span></p>
+  </div>
+  <div class="stage rise">
+    <div class="lamp"></div>
+    <img class="smoke s1" src="{{ASSET:web/smoke-tall.webp}}" alt="" width="298" height="1754">
+    <img class="smoke s2" src="{{ASSET:web/smoke-tall.webp}}" alt="" width="298" height="1754">
+    <div class="book-wrap"><img class="book" id="book" src="{{ASSET:web/book.webp}}" alt="The book Make Any Bullshit Sound Brilliant, standing, its black cover with the word bullshit in red" width="760" height="1100"></div>
+  </div>
+</section>
+
+<!-- ============ THE SENTENCES ============ -->
+<section class="heard" id="heard">
+  <img class="smoke-band" src="{{ASSET:web/smoke-field.webp}}" alt="" width="1400" height="238">
+  <div class="wrap">
+    <h2 class="rise">You've heard every one of these</h2>
+    <ul class="litany rise" id="litany">
+      <li>You're being naive.</li>
+      <li>You'll understand when you're older.</li>
+      <li>That's not how the real world works.</li>
+      <li>Be realistic.</li>
+      <li>You're wasting your time with that.</li>
+      <li>Let me think about it.</li>
+    </ul>
+    <p class="heard-turn rise">None of them is an argument. Each one is a frame, and <em>you've been answering it on its terms.</em></p>
+  </div>
+</section>
+
+<!-- ============ THE DESK ============ -->
+<section class="desk" id="proof">
+  <div class="wrap">
+    <h2 class="rise">Same sentence. Two people.</h2>
+    <p class="desk-lede rise">Someone close to you takes a shot at what you're doing with your life. Here's that moment twice.</p>
+
+    <div class="sheets">
+      <article class="sheet sheet-a rise">
+        <div class="sheet-head"><span><b>Transcript A</b></span><span>Unprepared</span></div>
+        <div class="exchange"><span class="who">Them</span><p class="said">&ldquo;You're wasting your time with that.&rdquo;</p></div>
+        <div class="exchange"><span class="who">You</span><p class="said weak">&ldquo;I mean&hellip; it's actually going okay? There's stuff happening you don't really see. I don't know. You'll understand later.&rdquo;</p></div>
+        <p class="pen">They win. You're defending, and you sound like it.</p>
+      </article>
+      <article class="sheet sheet-b rise">
+        <div class="sheet-head"><span><b>Transcript B</b></span><span>Prepared</span></div>
+        <div class="exchange"><span class="who">Them</span><p class="said">&ldquo;You're wasting your time with that.&rdquo;</p></div>
+        <div class="exchange"><span class="who">You</span><p class="said">&ldquo;<span class="circled">Wasting it compared to what?<svg viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M18 34 C 26 10 120 4 236 8 C 292 10 302 40 252 51 C 182 64 46 60 16 44 C 2 36 14 20 52 14"/></svg></span> If you've got a better use for my next two years, I'll actually listen.&rdquo;</p></div>
+        <p class="pen">&uarr; The whole move. Now they have to do the work.</p>
+      </article>
+    </div>
+
+    <p class="verdict rise">Same facts, same person. <b>The only thing that changed is who had to defend themselves.</b> That's one move, from one framework in the book.</p>
+
+    <div class="turn">
+      <div class="turn-intro rise">
+        <h3>Your turn</h3>
+        <p>It's just been said to you, at dinner, in front of people. You get one sentence.</p>
+      </div>
+      <div class="card rise" id="card">
+        <div class="card-top"><span>Pick your reply</span><span>One shot</span></div>
+        <p class="jab">&ldquo;You're wasting your time with that.&rdquo;</p>
+        <div class="opts" id="opts">
+          <button class="opt" type="button" aria-pressed="false" data-v="v1"><span class="k">A</span><span>&ldquo;It's actually going better than you think.&rdquo;</span></button>
+          <button class="opt" type="button" aria-pressed="false" data-v="v2"><span class="k">B</span><span>&ldquo;Wasting it compared to what?&rdquo;</span></button>
+          <button class="opt" type="button" aria-pressed="false" data-v="v3"><span class="k">C</span><span>&ldquo;You'll see.&rdquo;</span></button>
+        </div>
+        <div aria-live="polite">
+          <div class="v lose" id="v1"><span class="stamp">Frame taken</span><p>Now you're defending your results on their terms, and every follow-up is about why you have so little to show.</p></div>
+          <div class="v win" id="v2"><span class="stamp">Work handed back</span><p>They have to name a better use of two years of your life, out loud, in front of everyone. They almost never can, and the room hears it.</p></div>
+          <div class="v lose" id="v3"><span class="stamp">Point conceded</span><p>You agreed there's nothing to show and bet on a future you can't prove. Nothing for them to answer, nothing for you to win.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT YOU WALK AWAY WITH ============ -->
+<section class="wrap inside" id="inside">
+  <h2 class="rise">What you can do after this</h2>
+  <div class="gets">
+    <div class="get rise"><h3>Make a weak idea sound inevitable</h3><p>Take the argument you'd lose and rebuild it until disagreeing with you feels stupid.</p></div>
+    <div class="get rise"><h3>Defend the opinion the whole room hates</h3><p>Hold a position nobody agrees with, and watch them start doubting themselves instead of you.</p></div>
+    <div class="get rise"><h3>Never explain yourself again</h3><p>When someone questions your choices, you'll know how to turn it around, so they end up defending theirs instead.</p></div>
+  </div>
+</section>
+
+<!-- ============ THE OFFER ============ -->
+<section class="offer" id="price">
+  <div class="wrap">
+    <h2 class="rise">Pick one</h2>
+    <p class="anchor rise">A communication coach charges around <b>$150 for one hour</b>. This is yours for good, and it's there at midnight when you're replaying the argument.</p>
+    <div class="plans">
+      <article class="plan plan-kit rise">
+        <p class="plan-name">The full kit</p>
+        <p class="plan-price">$147</p>
+        <ul>
+          <li class="plus">Everything in the $27 book, plus:</li>
+          <li>Printed paperback, shipped to your door</li>
+          <li>Full audiobook, read by the author</li>
+          <li>Three companion playbooks: sales objections, public argument, difficult people</li>
+          <li>Printable one-page field card</li>
+        </ul>
+        <a class="btn btn-ghost" href="#checkout-kit">Get the full kit</a>
+      </article>
+      <article class="plan plan-book rise">
+        <p class="plan-flag">Most people start here</p>
+        <img class="plan-art" src="{{ASSET:web/bundle.webp}}" alt="Make Any Bullshit Sound Brilliant standing beside its free companion, The Smoke Method" width="880" height="927" loading="lazy">
+        <p class="plan-name">The book + The Smoke Method</p>
+        <p class="plan-price">$27</p>
+        <p class="plan-lead">The same book that's in the full kit. You skip the paperback and the extras, and keep $120.</p>
+        <ul>
+          <li><b>The complete book, on your phone tonight.</b> <span>Every framework, script and argument tactic for making weak arguments, crazy ideas and unpopular opinions sound convincing.</span></li>
+          <li><b>Whole conversations and practice scenarios.</b> <span>Every move shown working in a real exchange, then a scenario to try it yourself.</span></li>
+          <li><b>The Smoke Method, free.</b> <span>The five-step questioning method: pause, clarify, trace, test, lead. You never run out of questions again.</span></li>
+          <li><b>30 days, zero risk.</b> <span>If it doesn't change how you argue, you get every dollar back and keep the book anyway.</span></li>
+        </ul>
+        <a class="btn" href="#checkout">Get instant access <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <p class="meta">Secure checkout &middot; download link in under a minute</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUESTIONS ============ -->
+<section class="wrap faq" id="faq">
+  <h2 class="rise">Before you buy</h2>
+  <div class="qs rise">
+    <details class="q"><summary>Will this work if I'm not a confident person?</summary><p>Confidence here is a delivery pattern, not a personality. The book treats it as something you run on purpose, which is exactly what the people who intimidate you are already doing.</p></details>
+    <details class="q"><summary>Isn't this just manipulation?</summary><p>Every sentence anyone has ever said to you was framed. There's no neutral version. The only question is whether you do it deliberately or keep losing to people who do.</p></details>
+    <details class="q"><summary>What exactly do I get, and how fast?</summary><p>The complete book as a PDF plus The Smoke Method field guide. The download link arrives the moment your payment clears, usually inside a minute.</p></details>
+    <details class="q"><summary>What if it isn't for me?</summary><p>Email within 30 days and you get every dollar back. You keep the book either way.</p></details>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section class="close" id="checkout">
+  <img class="smoke-band" src="{{ASSET:web/smoke-field.webp}}" alt="" width="1400" height="238">
+  <div class="wrap close-grid">
+    <h2 class="rise">The next one is already coming</h2>
+    <div class="close-copy rise">
+      <p>Someone is going to say something to you this week, and you'll be replaying it at midnight. You walk into that with this, or without it.</p>
+      <div class="buy">
+        <a class="btn" href="#price">Get instant access <span class="arrow" aria-hidden="true">&rarr;</span></a>
+        <span class="meta">$27 &middot; instant PDF</span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap foot">
+  <span>Make Any Bullshit Sound Brilliant</span>
+  <span>&copy; 2026</span>
+</footer>
+
+<script>
+document.body.classList.add('js');
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* entrances: anything on screen now opens at once, the rest as it arrives */
+  var items = Array.prototype.slice.call(document.querySelectorAll('.rise'));
+  function show(el, d){ setTimeout(function(){ el.classList.add('in'); }, reduce ? 0 : (d || 0)); }
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target, n = 0, s = el.parentNode ? el.parentNode.children : [];
+      for (var i = 0; i < s.length; i++){ if (s[i] === el) break; if (s[i].classList && s[i].classList.contains('rise')) n++; }
+      show(el, Math.min(n, 4) * 80);
+      io.unobserve(el);
+    });
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.08}) : null;
+  items.forEach(function(el, i){
+    var r = el.getBoundingClientRect();
+    if (r.width === 0 && r.height === 0) { el.classList.add('in'); return; }
+    if (r.top < window.innerHeight && r.bottom > 0) { show(el, 60 + i * 70); return; }
+    if (io) io.observe(el); else el.classList.add('in');
+  });
+
+  /* the sentences light one at a time */
+  var lis = document.querySelectorAll('#litany li');
+  if (lis.length && !reduce) {
+    var k = 0; lis[0].classList.add('lit');
+    setInterval(function(){ lis[k].classList.remove('lit'); k = (k + 1) % lis.length; lis[k].classList.add('lit'); }, 1800);
+  } else { Array.prototype.forEach.call(lis, function(l){ l.classList.add('lit'); }); }
+
+  /* your turn */
+  var opts = document.querySelectorAll('#opts .opt');
+  Array.prototype.forEach.call(opts, function(b){
+    b.addEventListener('click', function(){
+      Array.prototype.forEach.call(opts, function(o){ o.setAttribute('aria-pressed', 'false'); });
+      b.setAttribute('aria-pressed', 'true');
+      Array.prototype.forEach.call(document.querySelectorAll('.v'), function(v){ v.classList.remove('on'); });
+      var v = document.getElementById(b.getAttribute('data-v'));
+      if (v) { void v.offsetWidth; v.classList.add('on'); }
+    });
+  });
+
+  /* the book turns a little toward the pointer */
+  var book = document.getElementById('book');
+  var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (book && fine && !reduce) {
+    var stage = book.closest('.stage');
+    stage.addEventListener('pointermove', function(e){
+      var r = stage.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      book.style.transform = 'rotateY(' + (x * 10).toFixed(2) + 'deg) rotateX(' + (-y * 6).toFixed(2) + 'deg)';
+    });
+    stage.addEventListener('pointerleave', function(){ book.style.transform = ''; });
+  }
+})();
+</script>
