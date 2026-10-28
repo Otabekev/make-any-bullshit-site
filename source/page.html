@@ -187,6 +187,10 @@ body.js .v.on{display:grid;animation:stamp .42s cubic-bezier(.2,.9,.3,1.25) both
 .plan-book li::before{top:.72em}
 .plan-kit li.plus{padding-left:0;color:var(--text);font-style:italic}
 .plan-kit li.plus::before{display:none}
+.soldout{margin-top:auto}
+.soldout-tag{display:inline-block;font-family:var(--disp);font-size:1.15rem;letter-spacing:.06em;color:var(--muted);box-shadow:inset 0 0 0 2px #3a4247;padding:.42em .7em .32em}
+.soldout p{margin-top:.9rem;color:var(--faint);font-size:var(--small);line-height:1.5;max-width:34ch}
+.plan-kit{opacity:.82}
 
 /* ---------- 6 · questions ---------- */
 .faq{padding-block:clamp(5rem,10vw,8rem);display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3rem)}
@@ -353,7 +357,10 @@ body.js .sheet-b.in .pen{opacity:1;transition:opacity .5s ease 1.5s}
           <li>Three companion playbooks: sales objections, public argument, difficult people</li>
           <li>Printable one-page field card</li>
         </ul>
-        <a class="btn btn-ghost" href="#checkout-kit">Get the full kit</a>
+        <div class="soldout">
+          <span class="soldout-tag">Sold out</span>
+          <p>The printed kit is out of stock. Back in a few business days &mdash; the $27 edition is available now.</p>
+        </div>
       </article>
       <article class="plan plan-book rise">
         <p class="plan-flag">Most people start here</p>
